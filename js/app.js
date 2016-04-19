@@ -23,12 +23,16 @@ function getYoutube(userInput){
 
         success: function(data) {
                     console.log(data.items);
-             var items = data.items.map(function(video){
-                //  console.log(video.snippet.title);
-                 console.log(video.snippet.thumbnails.medium.url);
-                 $('#searchresults').append("<li> <b>" + video.snippet.title + "</b> </li>");
-                 $('#searchresults').append("<img src=" + video.snippet.thumbnails.medium.url + "</img>");
-             });
+                for (var i = 0; i < data.items.length; i++){
+                    console.log(data.items[i].snippet.title);
+                }
+            //  var items = data.items.map(function(video){
+            //     //  console.log(video.snippet.title);
+            //      console.log(video.snippet.thumbnails.default.url);
+            //      $('#searchresults').append("<li> <b>" + video.snippet.title + "</b> </li>");
+            //      $('#searchresults').append("<img src='" + video.snippet.thumbnails.default.url + "'>");
+            //  });
+            
         }
     };
     $.ajax(thinktube);
