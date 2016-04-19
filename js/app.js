@@ -5,19 +5,24 @@ var thinktube = {
     data:{
         part: 'snippet',
         key: 'AIzaSyDtULH2PxGsNF3BAQnF8HfFqGQGsl7qv0Y',
-        q:  'batman'
+        q:  $('#query').val() //search input
     },
-    
+
+    //build function where upon click of submit button, input value from user is logged into a variable
+    //take said variable which containts the input value and stick it in our data object
+
     success: function(data) {
-                console.log(data);
-        var items = data.map(function(repo){
-            return '<li>' + repo.name + '</li>';
-        });
-        $('#searchresults').append(items);
+                console.log(data.items);
+         var items = data.items.map(function(video){
+             console.log(video.snippet.title);
+             $('#searchresults').append("<li>" + video.snippet.title + "</li>");
+         });
     }
 };
 
-$.ajax(thinktube);
+$('#btn').click(function(){
+    $.ajax(thinktube);
+});
 
 //  https://www.youtube.com/results?search_query=funniest+youtube+videos&page=&utm_source=opensearch
 
