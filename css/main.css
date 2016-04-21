@@ -1,9 +1,13 @@
+body {
+    background-color: cornflowerblue;
+}
+
 .input-field {
     display: block;
     margin:6rem 30% 2rem 30%;
 }
 
-#listResults .main-image{
+.main-image, .first-rel, .second-rel, .third-rel{
     display:block;
     margin:0 auto;
     max-width: 10rem;
@@ -11,4 +15,7 @@
 }
 
 
-
+.container{
+    margin-left: 20%;
+    margin-right: 20%;
+}
