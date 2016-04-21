@@ -1,0 +1,14 @@
+.input-field {
+    display: block;
+    margin:6rem 30% 2rem 30%;
+}
+
+#listResults .main-image{
+    display:block;
+    margin:0 auto;
+    max-width: 10rem;
+    border-radius: 100%;
+}
+
+
+
