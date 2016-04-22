@@ -3,26 +3,26 @@
 
 <head>
 <meta charset="utf-8">
-<title>Thinkful Tube</title>
+<title>Spotify API</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css" type="text/css" />
 </head>
 <body>
-    <div class="testing">
     
-    
-    <div class="input-field">
-        <button class="btn btn-primary" id="btn">Submit</button>    
-        <input type="text" id="query"/>
+    <div class="container">
+        <h1 class="text-center">Spotifry My Brain</h1>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-4 input-field">
+            <form id="artistSearchForm">
+                <input type="text" id="query" name="searchField"/>
+                <input type="submit" name="searchField" class="btn btn-primary" id="btn">
+            </form>
+        </div>
     </div>
-    
     <div class="row">
         <div class="col-sm-4 col-sm-offset-4 mainArtist"></div>
     </div>
-    
-    
-    <div class="container">
-        <div class="row">
+    <div class="row">
         <div class="col-sm-4 col-sm-offset-8 relatedArtist1"></div>
     </div>
     <div class="row">
@@ -34,9 +34,7 @@
     </div>
     
     
-    <div class="search"></div>
-    <div id="searchresults"></div>
-    </div>
+    
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
     <script type="text/javascript" src="js/app.js"></script>

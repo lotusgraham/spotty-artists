@@ -1,4 +1,5 @@
-$('#btn').click(function() {
+$('#artistSearchForm').on('submit', function(e) {
+    e.preventDefault();
     $('#listResults').empty();
     searchByArtist($('#query').val());
 });
