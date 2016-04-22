@@ -1,15 +1,21 @@
+
+//Adds submit functionality to text input
 $('#artistSearchForm').on('submit', function (e) {
     e.preventDefault();
     //$('#resultsSection').empty();
     searchByArtist($('#query').val());
 });
 
+
+//Displays main artist on page
 var displayTopArtist = function (artistName, imgUrl) {
     console.log('xxxxxxxx');
     $('.mainArtist').append("<h2>" + artistName + "</h2>");
     $('.mainArtist').append("<img class='main-image' src='" + imgUrl + "'/>");
 };
 
+
+//Displays 3 related artists on page
 var displayRelatedArtist = function (artist1, artist2, artist3) {
     console.log('xxxxxxxx');
     $('.relatedArtist1').append("<img class='first-rel' src='" + artist1.image + "'/><p>" + artist1.name + "</p>");
@@ -43,7 +49,7 @@ var searchByArtist = function (userInput) {
 
         })
         .done(function(result) {
-            findRelatedArtists(result.artists.items[0].id);
+            findRelatedArtists(result.artists.items[0].id);  //makes second API call for related artists
         })
         .fail(function (jqXHR, error) {
             console.log(error);
