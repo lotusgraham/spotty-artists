@@ -18,11 +18,14 @@ var displayTopArtist = function (artistName, imgUrl) {
 
 var displayMoreRelatedArtists = function (artist1, artist2, artist3) {
     console.log(relatedArtistCounter);
-    var row = '<div class="row">';
-    var col1 = '<div class="col-sm-4 relatedArtist1 text-center">';
-    var col2 = '<div class="col-sm-4 col-sm-offset-4 relatedArtist2 text-center">';
-    var col3 = '<div class="col-sm-4 col-sm-offset-8 relatedArtist3 text-center">';
-    var closingDivs = '</div></div>';
+    var row = '<div class="row">',
+        col1 = '<div class="col-sm-4 relatedArtist1 text-center">',
+        col2 = '<div class="col-sm-4 col-sm-offset-4 relatedArtist2 text-center">',
+        col3 = '<div class="col-sm-4 col-sm-offset-8 relatedArtist3 text-center">',
+        closingDivs = '</div></div>',
+        music1 = "https://www.google.com/search?q="+ artist1.name +"+site:youtube.com&btnI",
+        music2 = "https://www.google.com/search?q="+ artist2.name +"+site:youtube.com&btnI",
+        music3 = "https://www.google.com/search?q="+ artist3.name +"+site:youtube.com&btnI";
 
     if (relatedArtistCounter % 2 === 0) {
         $('#resultsSection').append(row + col3 + '<img class="first-rel" src="' + artist1.image + ' "><p>' + artist1.name + '</p>' + closingDivs);
@@ -40,14 +43,15 @@ var displayMoreRelatedArtists = function (artist1, artist2, artist3) {
 
 
 
-
-
 //Displays 3 related artists on page
 var displayRelatedArtist = function (artist1, artist2, artist3) {
     console.log('xxxxxxxx');
-    $('.relatedArtist1').append("<img class='first-rel' src='" + artist1.image + "'/><p>" + artist1.name + "</p>");
-    $('.relatedArtist2').append("<img class='second-rel' src='" + artist2.image + "'/><p>" + artist2.name + "</p>");
-    $('.relatedArtist3').append("<img onclick='findRelatedArtists(clickedArtistId)' class='third-rel' src='" + artist3.image + "'/><p>" + artist3.name + "</p>");
+    var music1 = "https://www.google.com/search?q="+ artist1.name +"+site:youtube.com&btnI";
+    var music2 = "https://www.google.com/search?q="+ artist2.name +"+site:youtube.com&btnI";
+    var music3 = "https://www.google.com/search?q="+ artist3.name +"+site:youtube.com&btnI";
+    $('.relatedArtist1').append("<img class='first-rel' src='" + artist1.image + "'/><a target='_blank' href='" + music1 + "'><p>" + artist1.name + "</p></a>");
+    $('.relatedArtist2').append("<img class='second-rel' src='" + artist2.image + "'/><a target='_blank' href='" + music2 + "'><p>" + artist2.name + "</p></a>");
+    $('.relatedArtist3').append("<img onclick='findRelatedArtists(clickedArtistId)' class='third-rel' src='" + artist3.image + "'/><a target='_blank' href='" + music3 + "'><p>" + artist3.name + "</p></a>");
 };
 
 
@@ -132,7 +136,10 @@ var findRelatedArtists = function (artistId) {
 $(document).ready(function() {
     $('#artistSearchForm').on('submit', function (e) {
         e.preventDefault();
-        //$('#resultsSection').empty();
+        $('.instructions').fadeOut('fast', function(){
+
+        });
+        $('.mainArtist, .relatedArtist1, .relatedArtist2, .relatedArtist3').empty();
         searchByArtist($('#query').val());
     });
 
@@ -141,4 +148,3 @@ $(document).ready(function() {
         findRelatedArtists(clickedArtistId);
     });
 });
-

@@ -4,7 +4,7 @@
 /*}*/
 
 body {
-    background-color: limegreen;
+
 }
 
 .app-title {
@@ -46,6 +46,18 @@ input[type="text"], textarea {
 
 }
 
+body {
+    /*position:relative;
+    width: 100%;
+    height: 100%;
+    opacity: 0.20;
+    -moz-opacity: 20%;
+    -webkit-opacity: 20%;
+    z-index: 2;
+    background-color: limegreen;*/
+  background: url(https://38.media.tumblr.com/379dcd53caa6071cbe44cdbe66b06524/tumblr_n7zj03aACT1swm1iso1_500.gif) center center/cover no-repeat fixed;
+}
+
 .first-rel {
     height: 10rem;
     width: 10rem;
@@ -60,7 +72,29 @@ input[type="text"], textarea {
     height: 6rem;
     width: 6rem;
 }
+img:hover {
+   transform-origin:none;
+   transform:rotate(50deg);
 
+}
+.instructions{
+    /*opacity: 0.50;
+    -moz-opacity: 20%;
+    -webkit-opacity: 20%;
+    z-index: 2;*/
+    background-color: rgba(0,255,255, 0.6);
+    height:45rem;
+    border-radius: 3px;
+}
+
+a{
+    color:pink;
+}
 img{
     z-index: 100;
 }
+
+/*.instructions h2{
+    opacity: initial;
+    z-index: 3;
+}*/
