@@ -8,8 +8,14 @@ body {
 }
 
 .app-title {
+
     margin-top: 5rem;
     margin-bottom: 20px;
+}
+
+.main-artist {
+    color: yellowgreen;
+
 }
 
 p {
@@ -87,9 +93,15 @@ img:hover {
     border-radius: 3px;
 }
 
-a{
-    color:pink;
+a:focus, a:hover {
+    color: salmon;
+    text-decoration: underline;
 }
+
+a{
+    color:yellowgreen;
+}
+
 img{
     z-index: 100;
 }
