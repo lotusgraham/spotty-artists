@@ -1,4 +1,7 @@
 
+*{
+    border: 1px solid black;
+}
 
 body {
     background-color: limegreen;
@@ -40,7 +43,7 @@ input[type="text"], textarea {
 .main-image {
     height: 15rem;
     width: 15rem;
-    
+
 }
 
 .first-rel {

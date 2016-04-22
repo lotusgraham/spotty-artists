@@ -7,6 +7,10 @@ $('#artistSearchForm').on('submit', function (e) {
 });
 
 
+$('.relatedArtist3').click(function(){
+    findRelatedArtists(clickedArtistId);
+});
+
 //Displays main artist on page
 var displayTopArtist = function (artistName, imgUrl) {
     console.log('xxxxxxxx');
@@ -14,14 +18,25 @@ var displayTopArtist = function (artistName, imgUrl) {
     $('.mainArtist').append("<img class='main-image' src='" + imgUrl + "'/>");
 };
 
+var row = '<div class="row">';
+var colSettings = '<div class="col-sm-4 col-sm-offset-4 relatedArtist1 text-center"></div>';
+var colSettings = '<div class="col-sm-4 col-sm-offset-4 relatedArtist2 text-center"></div>';
+var colSettings = '<div class="col-sm-4 col-sm-offset-4 relatedArtist3 text-center"></div>';
+
+var closingDivs = '</div></div>';
 
 //Displays 3 related artists on page
 var displayRelatedArtist = function (artist1, artist2, artist3) {
     console.log('xxxxxxxx');
-    $('.relatedArtist1').append("<img class='first-rel' src='" + artist1.image + "'/><p>" + artist1.name + "</p>");
+    $('.relatedArtist1')
+
+    .append("<img class='first-rel' src='" + artist1.image + "'/><p>" + artist1.name + "</p>");
     $('.relatedArtist2').append("<img class='second-rel' src='" + artist2.image + "'/><p>" + artist2.name + "</p>");
     $('.relatedArtist3').append("<img class='third-rel' src='" + artist3.image + "'/><p>" + artist3.name + "</p>");
+    // $('.newRow').append()
 };
+
+var clickedArtistId = '';
 
 
 //API call to search by artist
@@ -68,17 +83,22 @@ var findRelatedArtists = function (artistId) {
         .done(function (result) {
             console.log(result);
             var relatedArtist1 = {
-                    image: result.artists[0].images[2].url,
-                    name: result.artists[0].name
+                    image: result.artists[0].images[0].url,
+                    name: result.artists[0].name,
+                    id: result.artists[0].id
                 },
                 relatedArtist2 = {
-                    image: result.artists[1].images[2].url,
-                    name: result.artists[1].name
+                    image: result.artists[3].images[0].url,
+                    name: result.artists[3].name,
+                    id: result.artists[3].id
                 },
                 relatedArtist3 = {
-                    image: result.artists[2].images[2].url,
-                    name: result.artists[2].name
+                    image: result.artists[5].images[0].url,
+                    name: result.artists[5].name,
+                    id: result.artists[5].id
                 };
+
+            clickedArtistId = relatedArtist3.id;
 
             displayRelatedArtist(relatedArtist1, relatedArtist2, relatedArtist3);
         })
