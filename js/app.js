@@ -34,7 +34,7 @@ var displayMoreRelatedArtists = function (artist1, artist2, artist3) {
         $('#resultsSection').append(row + col2 + '<img class="second-rel" src="' + artist2.image + ' "><p>' + artist2.name + '</p>' + closingDivs);
         $('#resultsSection').append(row + col3 + '<img onclick="findRelatedArtists(clickedArtistId)" class="third-rel" src="' + artist3.image + ' "><p>' + artist3.name + '</p>' + closingDivs);
     }
-
+    $("html, body").animate({ scrollTop: 10000 }, 500);
 };
 
 
