@@ -1,13 +1,32 @@
 
 
 body {
-    background-color: cornflowerblue;
+    background-color: limegreen;
+}
+
+.app-title {
+    margin-top: 5rem;
+}
+
+p {
+    font-weight: bold;
 }
 
 .input-field {
     display: block;
     margin-top: 6rem;
     margin-bottom: 6em;
+}
+
+input[type="text"], textarea {
+
+    background-color : #d1d1d1;
+    border: 1px solid black;
+    width: 225px;
+}
+
+#btn {
+    background-color: black;
 }
 
 .main-image, .first-rel, .second-rel, .third-rel{

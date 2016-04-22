@@ -1,11 +1,12 @@
 $('#artistSearchForm').on('submit', function (e) {
     e.preventDefault();
-    $('#listResults').empty();
+    //$('#resultsSection').empty();
     searchByArtist($('#query').val());
 });
 
-var displayTopArtist = function (imgUrl) {
+var displayTopArtist = function (artistName, imgUrl) {
     console.log('xxxxxxxx');
+    $('.mainArtist').append("<h2>" + artistName + "</h2>");
     $('.mainArtist').append("<img class='main-image' src='" + imgUrl + "'/>");
 };
 
@@ -34,9 +35,11 @@ var searchByArtist = function (userInput) {
         .done(function (result) {
             console.log(result);
 
+            var mainArtistName = result.artists.items[0].name;
             var mainArtistImageUrl = result.artists.items[0].images[1].url;
 
-            displayTopArtist(mainArtistImageUrl);
+
+            displayTopArtist(mainArtistName, mainArtistImageUrl);
 
         })
         .done(function(result) {
