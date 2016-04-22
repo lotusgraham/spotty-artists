@@ -1,7 +1,7 @@
 
-*{
-    border: 1px solid black;
-}
+/**{*/
+    /*border: 1px solid black;*/
+/*}*/
 
 body {
     background-color: limegreen;
@@ -59,4 +59,8 @@ input[type="text"], textarea {
 .third-rel {
     height: 6rem;
     width: 6rem;
+}
+
+img{
+    z-index: 100;
 }

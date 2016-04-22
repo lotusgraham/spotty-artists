@@ -1,42 +1,54 @@
-
 //Adds submit functionality to text input
-$('#artistSearchForm').on('submit', function (e) {
-    e.preventDefault();
-    //$('#resultsSection').empty();
-    searchByArtist($('#query').val());
-});
 
 
-$('.relatedArtist3').click(function(){
-    findRelatedArtists(clickedArtistId);
-});
+var clickedArtistId = '';
+var relatedArtistCounter = 0;
+console.log(clickedArtistId);
+
+
+
+
+
 
 //Displays main artist on page
 var displayTopArtist = function (artistName, imgUrl) {
-    console.log('xxxxxxxx');
     $('.mainArtist').append("<h2>" + artistName + "</h2>");
     $('.mainArtist').append("<img class='main-image' src='" + imgUrl + "'/>");
 };
 
-var row = '<div class="row">';
-var colSettings = '<div class="col-sm-4 col-sm-offset-4 relatedArtist1 text-center"></div>';
-var colSettings = '<div class="col-sm-4 col-sm-offset-4 relatedArtist2 text-center"></div>';
-var colSettings = '<div class="col-sm-4 col-sm-offset-4 relatedArtist3 text-center"></div>';
+var displayMoreRelatedArtists = function (artist1, artist2, artist3) {
+    console.log(relatedArtistCounter);
+    var row = '<div class="row">';
+    var col1 = '<div class="col-sm-4 relatedArtist1 text-center">';
+    var col2 = '<div class="col-sm-4 col-sm-offset-4 relatedArtist2 text-center">';
+    var col3 = '<div class="col-sm-4 col-sm-offset-8 relatedArtist3 text-center">';
+    var closingDivs = '</div></div>';
 
-var closingDivs = '</div></div>';
+    if (relatedArtistCounter % 2 === 0) {
+        $('#resultsSection').append(row + col3 + '<img class="first-rel" src="' + artist1.image + ' "><p>' + artist1.name + '</p>' + closingDivs);
+        $('#resultsSection').append(row + col2 + '<img class="second-rel" src="' + artist2.image + ' "><p>' + artist2.name + '</p>' + closingDivs);
+        $('#resultsSection').append(row + col1 + '<img onclick="findRelatedArtists(clickedArtistId)" class="third-rel" src="' + artist3.image + ' "><p>' + artist3.name + '</p>' + closingDivs);
+
+    } else {
+        $('#resultsSection').append(row + col1 + '<img class="first-rel" src="' + artist1.image + ' "><p>' + artist1.name + '</p>' + closingDivs);
+        $('#resultsSection').append(row + col2 + '<img class="second-rel" src="' + artist2.image + ' "><p>' + artist2.name + '</p>' + closingDivs);
+        $('#resultsSection').append(row + col3 + '<img onclick="findRelatedArtists(clickedArtistId)" class="third-rel" src="' + artist3.image + ' "><p>' + artist3.name + '</p>' + closingDivs);
+    }
+
+};
+
+
+
+
+
 
 //Displays 3 related artists on page
 var displayRelatedArtist = function (artist1, artist2, artist3) {
     console.log('xxxxxxxx');
-    $('.relatedArtist1')
-
-    .append("<img class='first-rel' src='" + artist1.image + "'/><p>" + artist1.name + "</p>");
+    $('.relatedArtist1').append("<img class='first-rel' src='" + artist1.image + "'/><p>" + artist1.name + "</p>");
     $('.relatedArtist2').append("<img class='second-rel' src='" + artist2.image + "'/><p>" + artist2.name + "</p>");
-    $('.relatedArtist3').append("<img class='third-rel' src='" + artist3.image + "'/><p>" + artist3.name + "</p>");
-    // $('.newRow').append()
+    $('.relatedArtist3').append("<img onclick='findRelatedArtists(clickedArtistId)' class='third-rel' src='" + artist3.image + "'/><p>" + artist3.name + "</p>");
 };
-
-var clickedArtistId = '';
 
 
 //API call to search by artist
@@ -63,7 +75,7 @@ var searchByArtist = function (userInput) {
             displayTopArtist(mainArtistName, mainArtistImageUrl);
 
         })
-        .done(function(result) {
+        .done(function (result) {
             findRelatedArtists(result.artists.items[0].id);  //makes second API call for related artists
         })
         .fail(function (jqXHR, error) {
@@ -100,9 +112,33 @@ var findRelatedArtists = function (artistId) {
 
             clickedArtistId = relatedArtist3.id;
 
-            displayRelatedArtist(relatedArtist1, relatedArtist2, relatedArtist3);
+            if (relatedArtistCounter == 0) {
+
+                displayRelatedArtist(relatedArtist1, relatedArtist2, relatedArtist3);
+
+
+            }
+            else {
+                displayMoreRelatedArtists(relatedArtist1, relatedArtist2, relatedArtist3);
+            }
+            relatedArtistCounter += 1;
+
         })
         .fail(function (jqXHR, error) {
             console.log(error);
         });
 };
+
+$(document).ready(function() {
+    $('#artistSearchForm').on('submit', function (e) {
+        e.preventDefault();
+        //$('#resultsSection').empty();
+        searchByArtist($('#query').val());
+    });
+
+    $('img .third-rel').click(function () {
+        console.log('click working');
+        findRelatedArtists(clickedArtistId);
+    });
+});
+
